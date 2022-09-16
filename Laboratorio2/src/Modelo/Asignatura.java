@@ -12,14 +12,16 @@ import java.util.ArrayList;
  * @author Estudiante
  */
 public class Asignatura {
-    public String codigo,nombre;
+
+    public String codigo, nombre;
     public short creditos;
+    public Profesor Profesor;
     public ArrayList<Grupo> grupos;
     public ArrayList<Estudiante> estudiantes;
 
     public Asignatura() {
         this.grupos = new ArrayList<>();
-        this.estudiantes= new ArrayList<>();
+        this.estudiantes = new ArrayList<>();
     }
 
     public Asignatura(String codigo, String nombre, short creditos) {
@@ -27,17 +29,32 @@ public class Asignatura {
         this.nombre = nombre;
         this.creditos = creditos;
         this.grupos = new ArrayList<>();
-        this.estudiantes= new ArrayList<>();
-    }
-    
-    public void newEstudiante(String codigo, String nombre,String direccion,String genero,String correo){
-        estudiantes.add(codigo,nombre,direccion,genero,correo);
+        this.estudiantes = new ArrayList<>();
     }
 
-    public void newGrupo(String id, byte capacidad){
+    public Profesor getProfesor() {
+        return Profesor;
+    }
+
+    public void setProfesor(Profesor Profesor) {
+        if (estudiantes.size() >= 5) {
+            this.Profesor = Profesor;
+        }
+        else System.err.println("No hay suficientes estudiantes matriculados");
+    }
+
+    public ArrayList<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
+
+    public void newGrupo(String id, byte capacidad) {
         grupos.add(new Grupo(id, capacidad));
     }
-    
+
     public String getCodigo() {
         return codigo;
     }
@@ -65,5 +82,5 @@ public class Asignatura {
     public ArrayList<Grupo> getGrupos() {
         return grupos;
     }
-    
+
 }
